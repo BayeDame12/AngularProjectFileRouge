@@ -1,0 +1,12 @@
+.hearder{
+  height:20vh;
+}
+.main{
+  height:71vh;
+  border:3px solid blue;
+}
+.footer{
+  height:9vh;
+  border:3px solid green;
+
+}
