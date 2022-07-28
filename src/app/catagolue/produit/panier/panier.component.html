@@ -1,0 +1,33 @@
+<app-produit></app-produit>
+<div class="d-flex justify-content-center bg-dark mt-1">
+  <h1 class="burg text-warning">Panier!</h1>
+</div>
+ <div class="main mt-1 d-flex">
+
+  <div class="main1 d-flex bg-dark mt-1 ">
+
+  </div>
+  <div class="main2 container h-50  row  d-flex mt-1 " >
+
+<div class="d-flex ">
+  <div *ngFor="let tabpaniers of tabpanier  async" class="card"  style="width: 18rem;">
+    <img class="card-img-top" src="{{tabpaniers.image}}" alt="Card image cap">
+    <div class="card-body">
+
+      <h5 class="card-title d-flex justify-content-center">{{tabpaniers.nom}}</h5>
+        <div class="boutton m-3">
+          <button type="button" class="btn btn-outline-warning" data-mdb-ripple-color="dark">Prix:{{tabpaniers.prix}}</button>
+          <button type="button" class="btn btn-outline-warning" data-mdb-ripple-color="dark" [routerLink]="['/detail-burger',tabpaniers.id]">Detail</button>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+</div>
+  <div class="main1 d-flex bg-dark mt-1 ">
+
+  </div>
+
+</div>
+

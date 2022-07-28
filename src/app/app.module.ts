@@ -8,7 +8,6 @@ import { LivraisonComponent } from './livraison/livraison.component';
 import { ZoneComponent } from './zone/zone.component';
 import { QuartierComponent } from './quartier/quartier.component';
 import { CommandeComponent } from './commande/commande.component';
-import { ProduitComponent } from './produit/produit.component';
 import { MenuComponent } from './menu/menu.component';
 import { FriteComponent } from './frite/frite.component';
 import { BoissonComponent } from './boisson/boisson.component';
@@ -16,18 +15,33 @@ import { BurgerComponent } from './burger/burger.component';
 import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CatagolueComponent } from './catagolue/catagolue.component';
-import { HeaderComponent } from './catagolue/header/header.component';
-import { FooterComponent } from './catagolue/footer/footer.component';
-import { MainComponent } from './catagolue/main/main.component';
 import { HttpClientModule }from '@angular/common/http';
-import { CommentComponent } from './comment/comment.component';
+import { DetailBurgerComponent } from './catagolue/produit/detail-burger/detail-burger.component';
+import { DetailMenuComponent } from './catagolue/produit/detail-menu/detail-menu.component';
+import { ProduitComponent } from './catagolue/produit/produit.component';
+import { PanierComponent } from './catagolue/produit/panier/panier.component';
+
 
 const routes:Routes = [
   {
     path:'',component:CatagolueComponent
   },
+
+  {
+    path:'detail-menu/:id',component:DetailMenuComponent
+  },
+  {
+    path:'detail-burger/:id',component:DetailBurgerComponent
+  },
+  {
+    path:'panier',component:PanierComponent
+  },
+
   {
     path:'client',component:ClientComponent
+  },
+  {
+    path:'produit',component:ProduitComponent
   },
   {
     path:'gestionaire',component:GestionaireComponent
@@ -46,9 +60,6 @@ const routes:Routes = [
   },
   {
     path:'commande',component:CommandeComponent
-  },
-  {
-    path:'comment',component:CommentComponent
   },
   {
     path:'produit',component:ProduitComponent
@@ -92,11 +103,10 @@ const routes:Routes = [
     BurgerComponent,
     NotFoundComponentComponent,
     CatagolueComponent,
-    HeaderComponent,
-    FooterComponent,
-    MainComponent,
-    CommentComponent
-  ],
+    DetailBurgerComponent,
+    DetailMenuComponent,
+    PanierComponent
+    ],
   imports: [
     BrowserModule,
     HttpClientModule,

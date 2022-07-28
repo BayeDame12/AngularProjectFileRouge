@@ -1,0 +1,14 @@
+.main1{
+  width:10%;
+  border:2px solid black;
+height:70vh;
+}
+.main2{
+display:flex;
+  width:80%;
+  height:50vh;
+}
+
+.main{
+ display:flex;
+}
