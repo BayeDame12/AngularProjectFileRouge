@@ -12,3 +12,22 @@ display:flex;
 .main{
  display:flex;
 }
+@media (min-width: 1025px) {
+  .h-custom {
+  height: 100vh !important;
+  }
+  }
+.prixTotal{
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+}
+.prixTotal p{
+  font-size:1rem;
+  
+}
+.prixTotal div{
+  font-size:1rem;
+}

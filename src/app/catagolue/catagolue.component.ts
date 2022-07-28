@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Burger } from '../model/burger';
 import { Menu } from '../model/menu';
 
@@ -17,7 +18,6 @@ export class CatagolueComponent implements OnInit {
 menu!:Menu[];
 burger!:Burger[];
 panier:Burger  []=[];
-snap!:number;
   constructor(private Catalog:CatalogueService,private paniers:PanierService) {
 
   }
@@ -38,10 +38,14 @@ snap!:number;
       );
 
     }
-    addPaniers(element:any){
-      this.paniers.addPanier(element);
-      this.snap=this.paniers.snap;
 
-     }
+
+    items$:Observable<any>=this.paniers.items$;
+
+
+    addToCart(product:any) {
+      this.paniers.addToCart(product);
+    }
+
 }
 

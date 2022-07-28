@@ -24,7 +24,7 @@
 
         <div class="border-warning card d-flex flex-direction-column"style="width:70px ">
           <img [routerLink]="['/panier']"  class="" src="../../assets/image/shopping-cart2.png" alt="Card image" style="width:100%">
-          <span class="addPanier bg-warning d-flex justify-content-center">{{snap}}</span>
+          <span class="addPanier bg-warning d-flex justify-content-center">{{(items$ |async).length }}</span>
         </div>
 
       </div>
@@ -45,7 +45,7 @@
                 <button type="button" class="btn btn-outline-warning" data-mdb-ripple-color="dark" [routerLink]="['/detail-burger',burgertab.id]">Detail</button>
               </div>
 
-            <a href="#" class="btn btn-warning w-100" (click)="addPaniers(burgertab)">Ajouter au panier</a>
+            <a href="#" class="btn btn-warning w-100" (click)="addToCart(burgertab)">Ajouter au panier</a>
           </div>
         </div>
       </div>
@@ -64,7 +64,7 @@
                 <button type="button" class="btn btn-outline-warning" data-mdb-ripple-color="dark" [routerLink]="['/detail-menu',menutab.id]">Detail</button>
               </div>
 
-            <a href="#" class="btn btn-warning w-100"(click)="addPaniers(menutab)">Ajouter au panier</a>
+            <a href="#" class="btn btn-warning w-100"(click)="addToCart(menutab)">Ajouter au panier</a>
           </div>
         </div>
       </div>

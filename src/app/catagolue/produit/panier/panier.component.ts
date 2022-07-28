@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Burger } from 'src/app/model/burger';
 import { Menu } from 'src/app/model/menu';
 import { PanierService } from 'src/app/services/panier.service';
@@ -9,17 +10,25 @@ import { CatagolueComponent } from '../../catagolue.component';
   templateUrl: './panier.component.html',
   styleUrls: ['./panier.component.css']
 })
-export class PanierComponent implements OnInit {
+export class PanierComponent  {
 
-// tabpanier
-tabpanier:Burger  []=[];
+  constructor(private cartService: PanierService) { }
+  items$:Observable<any>=this.cartService.items$;
+  somme:number=0;
+   ngOnInit(): void
+   {
+      this.cartService.totalPrix().subscribe((som)=>{
 
-  constructor(private afichepanier:PanierService) { }
+      som.forEach(element => {
+     this.somme+=element.prix*element.quantity;
+     });
+    });
+   }
 
-  ngOnInit(): void {
-     this.tabpanier=this.afichepanier.getPanier();
-
-console.log(this.tabpanier);
-
+  supprimerCart(product:any) {
+    this.cartService.supprimerCart(product);
   }
+
 }
+
+
