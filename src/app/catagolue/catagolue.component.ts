@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Burger } from '../model/burger';
+import { Catalogue } from '../model/catalogue';
 import { Menu } from '../model/menu';
 
 import { CatalogueService } from '../services/catalogue.service';
@@ -16,6 +17,7 @@ import { PanierService } from '../services/panier.service';
 export class CatagolueComponent implements OnInit {
 //pour afficher tableau burger & menu sur catalogue
 menu!:Menu[];
+catalogue!:Catalogue[];
 burger!:Burger[];
 panier:Burger  []=[];
   constructor(private Catalog:CatalogueService,private paniers:PanierService) {
@@ -24,19 +26,20 @@ panier:Burger  []=[];
 
   ngOnInit(): void {
 //ABONNEMENTSUBQCRIBE
-    this.Catalog.getMenu().subscribe(
-      data=>{
-          this.menu=data;
-          console.log(data);
-      }
-      );
+
+
     this.Catalog.getBurger().subscribe(
       data=>{
           this.burger=data;
           console.log(data);
       }
       );
-
+    this.Catalog.getMenu().subscribe(
+      data=>{
+          this.menu=data;
+          console.log(data);
+      }
+      );
     }
 
 
@@ -47,5 +50,4 @@ panier:Burger  []=[];
       this.paniers.addToCart(product);
     }
 
-}
-
+  }

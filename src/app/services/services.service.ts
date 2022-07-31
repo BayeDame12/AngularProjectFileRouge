@@ -10,22 +10,4 @@ import { Imenu } from '../menu/Imenu';
 export class ServicesService {
 
 
-
-// private burger:Observable<Iburger>=from([
-
-// produits!:{
-//   "menu": [],
-//   "burger": []
-// }
-
-// public  getMenu():Observable<Imenu>{
-
-// return this.menu;
-
-// }
-// public  getBurger():Observable<Iburger>{
-
-// return this.burger;
-// }
-
 }

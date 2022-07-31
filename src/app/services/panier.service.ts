@@ -19,8 +19,8 @@ private itemsSubject = new BehaviorSubject<Burger[]>([]);
 items$ = this.itemsSubject.asObservable();
 
 
+// product=Object.assign({},this.product,{'quantity':1})
 addToCart(product: Burger) {
-  product=Object.assign({},product,{'quantity':1})
 
 console.warn(product);
 
@@ -38,6 +38,8 @@ console.warn(product);
       else{
         products.forEach(element => {
           if(element.id == product.id)
+console.warn(element.quantity);
+
           element.quantity++;
 
 
@@ -51,6 +53,8 @@ console.warn(product);
   ).subscribe();
 
 }
+
+
 supprimerCart(product: Burger) {
   this.items$.pipe(
     take(1),
@@ -64,6 +68,12 @@ supprimerCart(product: Burger) {
 
 totalPrix(){
 return this.items$;
+}
+
+increment(product:Burger, n:number){
+  this.supprimerCart(product);
+  product.quantity=product.quantity+n;
+  this.addToCart(product);
 }
 
 }

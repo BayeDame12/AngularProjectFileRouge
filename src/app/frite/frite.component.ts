@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Frites } from '../model/frites';
+import { FritesService } from '../services/frites.service';
 
 @Component({
   selector: 'app-frite',
@@ -9,7 +11,7 @@ export class FriteComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
 
+    }
 }

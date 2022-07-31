@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { Burger } from 'src/app/model/burger';
+import { Frites } from 'src/app/model/frites';
 import { CatalogueService } from 'src/app/services/catalogue.service';
+import { FritesService } from 'src/app/services/frites.service';
 
 @Component({
   selector: 'app-detail-burger',
@@ -25,5 +27,6 @@ ngOnInit(): void {
       console.log(data);
     }
     );
+
 }
 }

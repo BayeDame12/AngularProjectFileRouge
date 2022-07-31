@@ -1,8 +1,26 @@
 export interface Menu {
   id: number;
-  nom: string;
-  image: string;
+  nom: string,
+  image: string,
+  quantity:number,
   prix:number;
-  quantity:number;
+  Boissons: [
+    {
+      quantiteBoisson: number,
+      boisson: string
+    }
+  ],
+  Burgers: [
+    {
+      quantiteBurger: number,
+      burger: string
+    }
+  ],
+  Frites: [
+    {
+      quantiteFrite: number,
+      frite: string
+    }
+  ]
 
 }

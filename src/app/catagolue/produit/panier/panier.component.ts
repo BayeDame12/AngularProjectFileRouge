@@ -13,21 +13,29 @@ import { CatagolueComponent } from '../../catagolue.component';
 export class PanierComponent  {
 
   constructor(private cartService: PanierService) { }
-  items$:Observable<any>=this.cartService.items$;
+  items$:Observable<any[]>=this.cartService.items$;
+
   somme:number=0;
-   ngOnInit(): void
-   {
+  ngOnInit(): void
+  {
       this.cartService.totalPrix().subscribe((som)=>{
 
       som.forEach(element => {
+console.warn(element);
+
      this.somme+=element.prix*element.quantity;
      });
+
+
     });
    }
 
   supprimerCart(product:any) {
     this.cartService.supprimerCart(product);
   }
+increment(product:any ,n:number){
+  this.cartService.increment(product,n);
+}
 
 }
 

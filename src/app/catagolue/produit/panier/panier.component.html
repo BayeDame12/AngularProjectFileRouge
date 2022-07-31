@@ -36,6 +36,9 @@
                       <i class="fas fa-minus"></i>
                     </button>
                     <span>{{tabpaniers.quantity}}</span>
+                    <button class="btn btn-outline-warning " (click)="increment(tabpaniers,1)">+</button>
+                    <button class="btn btn-outline-warning " (click)="increment(tabpaniers,-1)">-</button>
+
 
                     <button class="btn btn-link px-2"
                       onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
@@ -54,14 +57,14 @@
 
           </table>
           <div class="mt-1 prixTotal border">
-          
+
             <div class="col-md-4">
               <div class="card mb-4">
                 <div class="card-header py-3">
                   <h5 class="mb-0">Total-Prix</h5>
                 </div>
-                <div class="card-body d-flex flex-direction-column justify-content-center">
-                  <button type="button" class=" btn btn-warning btn-lg btn-block">
+                <div  class="card-body d-flex flex-direction-column justify-content-center">
+                  <button  type="button" class=" btn btn-warning btn-lg btn-block">
                     Total a Payer={{somme}}Cfa
                   </button>
                 </div>
