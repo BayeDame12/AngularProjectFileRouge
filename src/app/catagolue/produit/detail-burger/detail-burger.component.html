@@ -1,4 +1,3 @@
- <app-produit></app-produit>
  <div class="d-flex justify-content-center bg-dark mt-1">
   <h1 class="burg text-warning">Detail-Burger</h1>
 </div>
@@ -14,7 +13,7 @@
       <button type="button" class="btn btn-outline-warning " data-mdb-ripple-color="dark">{{burgerid.nom}}</button>
       <div class="d-flex justify-content-between">
         <button type="button" class="btn btn-outline-warning" data-mdb-ripple-color="dark">Prix:{{burgerid.prix}}</button>
-        <button type="button" class="btn btn-outline-warning" data-mdb-ripple-color="dark">Ajouter au panier</button>
+        <button type="button" class="btn btn-outline-warning" data-mdb-ripple-color="dark" (click)="addToCart(burgerid)">Ajouter au panier</button>
       </div>
     </div>
 

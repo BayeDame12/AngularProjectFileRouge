@@ -1,32 +1,74 @@
- <app-produit></app-produit>
- <div class="d-flex justify-content-center bg-dark mt-1">
-  <h1 class="burg text-warning">Detail-Menu</h1>
-</div>
- <div class="main mt-1 d-flex flex-direction-column ">
+<div class="d-flex justify-content-between" >
 
-<div   class="main1 card w-25 d-flex bg-dark mt-1 ">
-
-  <img class=" d-flex justify-content-center align-items-center " src="" alt="">
-</div>
-
-<div class="main2 d-flex mt-1 " >
-
-        <div class="card  w-50 ">
-          <img class=" d-flex justify-content-center align-items-center " src="{{menuid.image}}" alt="">
-          <button type="button" class="btn btn-outline-warning " data-mdb-ripple-color="dark">{{menuid.nom}}</button>
-          <div class="d-flex justify-content-between">
-            <!-- <button type="button" class="btn btn-outline-warning" data-mdb-ripple-color="dark">Prix:{{menuid.prix}}</button> -->
-            <a href="#" class="btn btn-warning w-100" (click)="addToCart(menuid)">Ajouter au panier</a>
-
-          </div>
-        </div>
+  <div class="col-4 align-items-center card-6 p-4 border">
+    <div class="">
+      <img src="{{menu.image}}"
+        class="img-fluid" alt="Generic placeholder image">
 
       </div>
-      <div   class="main3 card w-25 d-flex bg-dark mt-1 ">
+      <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+          <tr>
+            <th>Nom</th>
+            <th>Prix</th>
+          </thead>
+
+          <tr>
+
+            <td>
+              <div>
+                <p class="lead fw-normal mb-0">{{menu.nom}}</p>
+              </div>
+            </td>
 
 
+            <td>
+              <div>
+                <p class="lead fw-normal mb-0">{{menu.prix}}</p>
+              </div>
+            </td>
+          </tr>
+<div *ngIf="cpt==Tai.quantity" class="d-flex justify-content-center ">
+
+  <button type="button" class="btn btn-primary btn-lg bg-dark text-warning" [routerLink]="['/panier']" (click)="addToCart(menu)" >Ajouter au panier</button>
+</div>
+</table>
+
+</div>tabpaniers
 
 
-      </div>
+<div class="card w-50">
+  <div class="card w-100">
+    <p class="d-flex justify-content-center">FRITE</p>
+<div class="d-flex">
+<p>{{frite.quantiteFrite}}</p>
+<img class="img-fluid rounded-3" style="width: 10rem;height: 10rem;" src="{{fritte.image}}" alt="">
+</div>
+ </div>
+
+ <div class="card w-100">
+    <p class="d-flex justify-content-center">BURGER</p>
+    <div class="d-flex">
+      <p>{{burger.quantiteBurger}}</p>
+      <img class="img-fluid rounded-3" style="width: 10rem;height: 10rem;" src="{{burgger.image}}" alt="">
+   </div>      </div>
+   <div class="card w-100">
+     <p class="d-flex justify-content-center">BOISSONS</p>
+     <p> {{Tai.quantity}}.{{menuTai.libelle}}</p>
+
+     <div class="d-flex " style="max-width: 180px">
+       <button class="btn btn-primary px-3 me-2"
+         onclick="this.parentNode.querySelector('input[type=number]').stepDown()" (click)="decrementq(quant.value)">
+         <i class="fas fa-minus"></i>
+       </button>
+       <div class="form-outline">
+       <img src="{{this.boiso.image}}" alt="">
+         <input id="" min="0" name="quantity" #quant  value="0" type="number" class="form-control" />
+       </div>
+       <button class="btn btn-primary px-3 ms-2"
+       onclick="this.parentNode.querySelector('input[type=number]').stepUp()" (click)="incrementq(quant.value)" >
+       <i class="fas fa-plus"></i>
+       </button>
+   </div>
 
 </div>

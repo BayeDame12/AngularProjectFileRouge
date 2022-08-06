@@ -1,78 +1,166 @@
-<app-produit></app-produit>
-<section class="h-100 h-custom">
-  <div  class="container h-100 py-5">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col">
+<section class="h-100 gradient-custom">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center my-4">
+      <div class="col-md-8">
+        <div class="card mb-4">
+          <div class="d-flex justify-content-between bg-dark  mb-5">
+            <label for="alivrer" class=" btn btn-warning btn-lg btn-block " >A livrer</label>
+            <input class="d-none" type="checkbox"  id="alivrer" name="" value=""  [(ngModel)]="commande" [(ngModel)]="!livrer">
+            <h1 class="burg text-warning ">PANIER</h1>
 
-        <div  class="table-responsive">
-          <table  class="table">
-            <thead>
-              <tr>
-                <th scope="col" class="h5">Produit</th>
-                <th scope="col">Prix</th>
-                <th scope="col">Quantité</th>
-                <th scope="col">Sous-Prix</th>
-                <th scope="col"></th>
+            <label for="surplace" class=" btn btn-warning btn-lg btn-block" >Sur place</label>
+            <input class="d-none" type="checkbox"  id="surplace" name="" value="" [(ngModel)]="commande" >
+          </div>
+          <div class="card-body">
+            <div class="row">
+
+              <div class=" ">
+                <table  class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="h5">Produit</th>
+                      <th scope="col-8">Prix</th>
+                      <th scope="col">Quantité</th>
+                      <th scope="col">Sous-Prix</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let tabpaniers of (items$ |async)">
+                    <tr >
+                      <th scope="row" class="border-bottom-0">
+                        <div class="d-flex align-items-center">
+                          <img src="{{tabpaniers.image}}" class="img-fluid rounded-3"
+                            style="width: 120px;" alt="Book">
+                            <div class="flex-column ms-5">
+                              <p class="mb-2">{{tabpaniers.prix}}</p>
+                            </div>
+                          </div>
+                      </th>
+                      <td class="align-middle border-bottom-0">
+                      </td>
+                      <td class="align-middle border-bottom-0">
+
+
+
+                        <div class="d-flex mb-4" style="max-width: 300px">
+
+                          <button class="btn btn-outline-warning "   (click)="incrementq(tabpaniers,-1)">-</button>
+                          <input id="form1" min="0" name="quantite"  value="{{tabpaniers.quantite}}"   type="number" class="form-control" />
+                          <button class="btn btn-outline-warning "   (click)="incrementq(tabpaniers,1)">+</button>
+
+                        </div>
+
+                      </td>
+                      <td class="align-middle border-bottom-0">
+                        <p class="mb-0" style="font-weight: 500;">{{tabpaniers.prix*tabpaniers.quantite}}</p>
+                      </td>
+                      <button class="btn btn-danger w-100 text-danger mt-3" (click)="supprimerCart(tabpaniers)">Supprimer</button>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+            <!-- Single item -->
+            <div class="row">
+              <div class="card mb-4">
+                <div class="card-header py-3 justify-content-center">
+                  <button  type="button" class=" btn btn-warning  d-flex justify-content-center" [disabled]="!commande" (click)="postCommande()">Commander</button>
+                </div>
+              </div>
+
+            </div>
+            <!-- Single item -->
+          </div>
+        </div>
+
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body">
+            <p><strong>We accept</strong></p>
+            <img class="me-2" width="45px"
+              src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+              alt="Visa" />
+            <img class="me-2" width="45px"
+              src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
+              alt="American Express" />
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Summary</h5>
+          </div>
+          <div class="card-body">
+
+
+                    <button type="button" class="btn btn-dark text-dark btn-lg btn-block bg-warning">Total a Payer={{somme}}Cfa</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--
+
+        <section class="h-100 h-custom d-flex">
+        <div class="d-flex  card-header w-25 h-75  border mt-3 mb-5 ">
+          <div class=" border-dark w-100  mt-5">
+            <h1 class="burg text-warning bg-dark">Zone_Livraison</h1>
+            <!-- ZONE DE LIVRAISON -->
+            <table  class="table ">
+
+              <tr class="d-flex justify-content-center">
+                <th scope="col" class="h5">Nom Zone</th>
               </tr>
-            </thead>
-            <tbody *ngFor="let tabpaniers of (items$ |async)">
+
+
+            <tbody >
               <tr >
                 <th scope="row" class="border-bottom-0">
                   <div class="d-flex align-items-center">
-                    <img src="{{tabpaniers.image}}" class="img-fluid rounded-3"
-                      style="width: 120px;" alt="Book">
                     <div class="flex-column ms-4">
-                      <p class="mb-2">{{tabpaniers.nom}}</p>
+                      <div class="form-group">
+                        <label for="alivrer"></label>
+                        <div *ngFor="let zone of zonestab async" class="d-flex justify-content-between ">
+                          <p>{{zone.nomZone}}</p>
+                          <input class="mb-4 " type="checkbox"  id="alivrer" name="" value="" [(ngModel)]="commande" [(ngModel)]="livrer" >
+                        </div>
+
+                      </div>
                     </div>
                   </div>
                 </th>
-                <td class="align-middle border-bottom-0">
-                  <p class="mb-0" style="font-weight: 500;">{{tabpaniers.prix}}</p>
-                </td>
-                <td class="align-middle border-bottom-0">
-                  <div class="d-flex flex-row">
-                    <button class="btn btn-link px-2"
-                      onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                    <span>{{tabpaniers.quantity}}</span>
-                    <button class="btn btn-outline-warning " (click)="increment(tabpaniers,1)">+</button>
-                    <button class="btn btn-outline-warning " (click)="increment(tabpaniers,-1)">-</button>
-
-
-                    <button class="btn btn-link px-2"
-                      onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                      <i class="fas fa-plus"></i>
-                    </button>
-                  </div>
-                </td>
-                <td class="align-middle border-bottom-0">
-                  <p class="mb-0" style="font-weight: 500;">{{tabpaniers.prix*tabpaniers.quantity}}</p>
-                </td>
-                <button class="btn btn-danger w-100 text-danger mt-3" (click)="supprimerCart(tabpaniers)">Supprimer</button>
-
-              </tr>
 
             </tbody>
 
-          </table>
-          <div class="mt-1 prixTotal border">
+  </table>
 
-            <div class="col-md-4">
-              <div class="card mb-4">
-                <div class="card-header py-3">
-                  <h5 class="mb-0">Total-Prix</h5>
-                </div>
-                <div  class="card-body d-flex flex-direction-column justify-content-center">
-                  <button  type="button" class=" btn btn-warning btn-lg btn-block">
-                    Total a Payer={{somme}}Cfa
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+ -->
 
-        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

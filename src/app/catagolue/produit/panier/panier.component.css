@@ -26,8 +26,17 @@ display:flex;
 }
 .prixTotal p{
   font-size:1rem;
-  
+
 }
 .prixTotal div{
   font-size:1rem;
 }
+
+
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background-color:white;
+
+
+  }

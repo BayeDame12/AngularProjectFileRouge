@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Burger } from 'src/app/model/burger';
-import { Menu } from 'src/app/model/menu';
-import { PanierService } from 'src/app/services/panier.service';
-import { CatagolueComponent } from '../../catagolue.component';
+import { Izone } from 'src/app/model/Izone/izone';
+import { PanierService } from 'src/app/services/panier/panier.service';
+import { ZonesService } from 'src/app/services/zone/zone.service';
+
 
 @Component({
   selector: 'app-panier',
@@ -12,31 +12,69 @@ import { CatagolueComponent } from '../../catagolue.component';
 })
 export class PanierComponent  {
 
-  constructor(private cartService: PanierService) { }
-  items$:Observable<any[]>=this.cartService.items$;
+  constructor(private cartService: PanierService, private zones:ZonesService ) { }
 
+  items$:Observable<any[]>=this.cartService.items$;
+  commande!:boolean;
+  livrer!:boolean;
   somme:number=0;
+  zonestab!:Izone[]
+  cpt:number=0;
+
+
+
   ngOnInit(): void
   {
-      this.cartService.totalPrix().subscribe((som)=>{
 
+    this.commande=false;
+    this.livrer=false;
+
+    this.cartService.totalPrix().subscribe((som)=>{
       som.forEach(element => {
-console.warn(element);
-
-     this.somme+=element.prix*element.quantity;
-     });
-
-
+        console.warn(element);
+        this.somme+=element.prix*element.quantite;
+      });
     });
+
+
+    this.zones.getZones().subscribe(
+
+      data=>{
+        this.zonestab=data;
+        console.log(data);
+        data.forEach(element =>{
+          console.log(element);
+                                        })
+            }
+  );
    }
 
   supprimerCart(product:any) {
     this.cartService.supprimerCart(product);
   }
-increment(product:any ,n:number){
-  this.cartService.increment(product,n);
-}
 
+  incrementq(q:any,a:any){
+
+    if(q<=a)
+    {
+      this.cpt++;
+    }
+  }
+    decrementq(q:any){
+
+    if(q>=0)
+    {
+      this.cpt--;
+    }
+  }
+
+  postCommande(){
+
+  }
+  prepareCommande(){
+   let tabpanier=this.cartService.getPanier();
+
+  }
 }
 
 

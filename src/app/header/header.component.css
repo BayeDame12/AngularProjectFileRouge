@@ -23,20 +23,10 @@ margin-left:50rem;
 font-weight:bolder;
 
 }
-main{
-  display:flex;
-  flex-direction:column;
-}
-.boutton{
-  display:flex;
-  justify-content:space-between;
-}
 .addPanier{
   font-weight:bolder;
   font-size:2rem;
 }
-
-
 
 .bresil {
 	-webkit-animation: tracking-in-contract 8s cubic-bezier(0.215, 0.610, 0.355, 1.000) infinite both;
@@ -127,21 +117,3 @@ main{
 }
 
 
-.container {
-  padding-top: 50px;
-  padding-bottom: 10px;
-  color: #405065;
-}
-
-.search-hero {
-  max-width: 500px;
-  padding-bottom: 50px;
-  margin:auto;
-}
-
-.form-control {
-  box-shadow: 0 10px 40px 0 #B0C1D9;
-}
-.form-control::placeholder  {
-  font-family: FontAwesome;
-}

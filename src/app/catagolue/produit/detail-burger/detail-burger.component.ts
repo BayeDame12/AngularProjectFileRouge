@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { Burger } from 'src/app/model/burger';
-import { Frites } from 'src/app/model/frites';
-import { CatalogueService } from 'src/app/services/catalogue.service';
-import { FritesService } from 'src/app/services/frites.service';
+import { Iburger } from 'src/app/model/Iburger/iburger';
+import { CatalogueService } from 'src/app/services/catalogue/catalogue.service';
+import { PanierService } from 'src/app/services/panier/panier.service';
+
 
 @Component({
   selector: 'app-detail-burger',
@@ -13,9 +13,9 @@ import { FritesService } from 'src/app/services/frites.service';
 })
 export class DetailBurgerComponent implements OnInit {
 // @Input()TestBed:string
-burgerid!:Burger;
+burgerid!:Iburger;
 
-constructor(private detail:CatalogueService,private acRoute:ActivatedRoute) {
+constructor(private detail:CatalogueService,private acRoute:ActivatedRoute,private addpan:PanierService) {
 
 }
 ngOnInit(): void {
@@ -27,6 +27,8 @@ ngOnInit(): void {
       console.log(data);
     }
     );
-
-}
+  }
+  addToCart(product:any) {
+    this.addpan.addToCart(product);
+  }
 }

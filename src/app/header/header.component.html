@@ -1,0 +1,30 @@
+
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark " >
+      <div class="navb container-fluid  ">
+        <div class="border-warning card "style="width:80px ">
+        <img [routerLink]="['/']" class="card-img-top" src="https://img.freepik.com/photos-gratuite/big-sandwich-hamburger-burger-boeuf-oignon-rouge-tomate-bacon-frit_2829-5398.jpg?t=st=1658596784~exp=1658597384~hmac=3bdbb741f6393c60cb7bc3541f3a0212fd093d198558ccf43ca4289e5e76b94c&w=996" alt="Card image" style="width:100%">
+      </div>
+      <span class="bugerbesil col-4">
+        <h1 class="bresil text-warning">BRESIL  BURGER</h1>
+      </span>
+
+        <div class="hearder d-flex justify-content-between"  id="navbarColor02 ">
+          <ul class="navbar-nav ml-5">
+
+            <li class="nav-item ">
+              <a class="nav-a nav-link text-warning" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-a nav-link text-warning " href="#">A propos</a>
+            </li>
+
+          </ul>
+        </div>
+
+        <div class="border-warning card d-flex flex-direction-column"style="width:70px ">
+          <img [routerLink]="['/panier']"  class="" src="../../assets/image/shopping-cart2.png" alt="Card image" style="width:100%">
+          <span class="addPanier bg-warning  d-flex justify-content-center">{{(items$ |async).length }}</span>
+        </div>
+
+      </div>
+    </nav>

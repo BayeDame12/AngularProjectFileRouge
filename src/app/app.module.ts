@@ -8,10 +8,6 @@ import { LivraisonComponent } from './livraison/livraison.component';
 import { ZoneComponent } from './zone/zone.component';
 import { QuartierComponent } from './quartier/quartier.component';
 import { CommandeComponent } from './commande/commande.component';
-import { MenuComponent } from './menu/menu.component';
-import { FriteComponent } from './frite/frite.component';
-import { BoissonComponent } from './boisson/boisson.component';
-import { BurgerComponent } from './burger/burger.component';
 import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CatagolueComponent } from './catagolue/catagolue.component';
@@ -20,7 +16,10 @@ import { DetailBurgerComponent } from './catagolue/produit/detail-burger/detail-
 import { DetailMenuComponent } from './catagolue/produit/detail-menu/detail-menu.component';
 import { ProduitComponent } from './catagolue/produit/produit.component';
 import { PanierComponent } from './catagolue/produit/panier/panier.component';
-
+import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 const routes:Routes = [
   {
@@ -65,18 +64,6 @@ const routes:Routes = [
     path:'produit',component:ProduitComponent
   },
   {
-    path:'menu',component:MenuComponent
-  },
-  {
-    path:'frite',component:FriteComponent
-  },
-  {
-    path:'boisson',component:BoissonComponent
-  },
-  {
-    path:'burger',component:BurgerComponent
-  },
-  {
     path:'404',component: NotFoundComponentComponent,
 
   }
@@ -97,20 +84,20 @@ const routes:Routes = [
     QuartierComponent,
     CommandeComponent,
     ProduitComponent,
-    MenuComponent,
-    FriteComponent,
-    BoissonComponent,
-    BurgerComponent,
     NotFoundComponentComponent,
     CatagolueComponent,
     DetailBurgerComponent,
     DetailMenuComponent,
-    PanierComponent
+    PanierComponent,
+    HeaderComponent,
+    FooterComponent
     ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

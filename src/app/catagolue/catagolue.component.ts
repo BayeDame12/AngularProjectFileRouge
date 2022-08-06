@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Burger } from '../model/burger';
-import { Catalogue } from '../model/catalogue';
-import { Menu } from '../model/menu';
-
-import { CatalogueService } from '../services/catalogue.service';
-import { PanierService } from '../services/panier.service';
+import { Iburger } from '../model/Iburger/iburger';
+import { Icatalogue } from '../model/Icatalogue/icatalogue';
+import { Imenu } from '../model/Imenu/imenu';
+import { CatalogueService } from '../services/catalogue/catalogue.service';
+import { PanierService } from '../services/panier/panier.service';
 
 @Component({
   selector: 'app-catagolue',
@@ -16,10 +15,11 @@ import { PanierService } from '../services/panier.service';
 
 export class CatagolueComponent implements OnInit {
 //pour afficher tableau burger & menu sur catalogue
-menu!:Menu[];
-catalogue!:Catalogue[];
-burger!:Burger[];
-panier:Burger  []=[];
+menu!:Imenu[];
+catalogue!:Icatalogue[];
+burger!:Iburger[];
+panier:Iburger  []=[];
+searchText!:any
   constructor(private Catalog:CatalogueService,private paniers:PanierService) {
 
   }
