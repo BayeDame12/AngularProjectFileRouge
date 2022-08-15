@@ -9,7 +9,6 @@ import { Imenu } from 'src/app/model/Imenu/imenu';
 })
 export class CatalogueService {
             url='http://127.0.0.1:8001/api/';
-            url1='http://127.0.0.1:8001/api/menus';
           //  url='https://projectfilerouge.herokuapp.com/api/';
 
           constructor(private http:HttpClient) {

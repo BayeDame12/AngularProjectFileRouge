@@ -1,0 +1,49 @@
+<div class="d-flex justify-content-center bg-dark mt-1">
+  <h1 class="burg text-warning">Listes Des Commandes</h1>
+</div>
+
+<div>
+<table class="table align-middle mb-0 bg-white">
+  <thead class="bg-light">
+
+    <tr>
+      <th>No Commande</th>
+      <th>Date Commande</th>
+      <th>Clients</th>
+      <th>Produit Commande Clients</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let item of listCom">
+    <tr>
+      <td>
+        <div class="d-flex align-items-center">
+          <div class="ms-3">
+            <p class="fw-bold mb-1">{{item['id']}}</p>
+          </div>
+        </div>
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{item['dateCommande']}}</p>
+      </td>
+      <td class="d-flex justify-content-lg-evenly">
+
+        <p class="fw-normal mb-1">{{item['client']['prenom']}}</p>
+        <p class="fw-normal mb-1">{{item['client']['nom']}}</p>
+        <p class="fw-normal mb-1">{{item['client']['telephone']}}</p>
+        <p class="fw-normal mb-1">{{item['client']['adresse']}}</p>
+
+      </td>
+      <td class="">{{item['Produits']['0']['quantite']}}</td>
+      <td class="">{{item['etatCommande']}}</td>
+      <td class="d-flex justify-content-ms-evenly">
+        <button  type="button" class=" btn btn-primary  d-flex justify-content-center" [routerLink]="['/ligne-commande',item.id]">detail</button>
+        <button  type="button" class=" btn btn-danger  d-flex justify-content-center"   (click)="getIdcommande(item['id'])">annule</button>
+      </td>
+    </tr>
+
+
+  </tbody>
+</table>
+
+</div>

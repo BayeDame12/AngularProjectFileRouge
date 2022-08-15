@@ -36,6 +36,8 @@ export class PanierComponent  {
       });
     });
 
+    console.warn(this.cartService.getCommandeLine())
+
 
     this.zones.getZones().subscribe(
 
@@ -53,27 +55,30 @@ export class PanierComponent  {
     this.cartService.supprimerCart(product);
   }
 
-  incrementq(q:any,a:any){
+//INCREMENTER ET DESINCREMENTER LES BOUTTON
+  incrementq(q:any){
 
-    if(q<=a)
+    if(q>0)
     {
       this.cpt++;
     }
   }
-    decrementq(q:any){
+  decrementq(q:any){
 
     if(q>=0)
     {
       this.cpt--;
     }
   }
+validCommand(){
 
-  postCommande(){
-
-  }
-  prepareCommande(){
-   let tabpanier=this.cartService.getPanier();
-
+     this.cartService.valideCommande()
+  console.log(this.cartService.valideCommande())
+}
+  suptabcommande() {
+    this.cartService.getCommandeLine().forEach(elem => {
+      this.supprimerCart(elem)
+    })
   }
 }
 

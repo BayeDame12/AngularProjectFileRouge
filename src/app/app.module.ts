@@ -3,11 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { GestionaireComponent } from './gestionaire/gestionaire.component';
 import { ClientComponent } from './client/client.component';
-import { LivreurComponent } from './livreur/livreur.component';
-import { LivraisonComponent } from './livraison/livraison.component';
-import { ZoneComponent } from './zone/zone.component';
 import { QuartierComponent } from './quartier/quartier.component';
-import { CommandeComponent } from './commande/commande.component';
+// import { CommandeComponent } from './commande/commande.component';
 import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CatagolueComponent } from './catagolue/catagolue.component';
@@ -20,12 +17,18 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { LigneDeCommandeComponent } from './commande/ligne-de-commande/ligne-de-commande.component';
+import { DetailCommandeComponent } from './commande/detail-commande/detail-commande.component';
+import { ListerAdminComponent } from './commande/lister-admin/lister-admin.component';
+import { DetailAdminCommComponent } from './commande/lister-admin/detail/detail-admin-comm/detail-admin-comm.component';
+import { AdminModule } from './admin/admin.module';
+
 
 const routes:Routes = [
-  {
-    path:'',component:CatagolueComponent
-  },
 
+  {
+    path:'admin',loadChildren:()=>import ('./admin/admin.module').then(mod=>mod.AdminModule)
+  },
   {
     path:'detail-menu/:id',component:DetailMenuComponent
   },
@@ -46,28 +49,32 @@ const routes:Routes = [
     path:'gestionaire',component:GestionaireComponent
   },
   {
-    path:'livreur',component:LivreurComponent
-  },
-  {
-    path:'livraison',component:LivraisonComponent
-  },
-  {
-    path:'zone',component:ZoneComponent
-  },
-  {
     path:'quartier',component:QuartierComponent
   },
+
   {
-    path:'commande',component:CommandeComponent
+    path:'detail-commande',component:DetailCommandeComponent
+  },
+  {
+    path:'ligne-commande',component:LigneDeCommandeComponent
+  },
+  {
+    path:'list-admin',component:ListerAdminComponent
+  },
+  {
+    path:'detail-admin-com',component:DetailAdminCommComponent
   },
   {
     path:'produit',component:ProduitComponent
   },
   {
+    path:'',component:CatagolueComponent
+  },
+  {
     path:'404',component: NotFoundComponentComponent,
 
-  }
-  ,
+  },
+
   {
     path:'**',redirectTo: '404'
 
@@ -78,11 +85,7 @@ const routes:Routes = [
     AppComponent,
     GestionaireComponent,
     ClientComponent,
-    LivreurComponent,
-    LivraisonComponent,
-    ZoneComponent,
     QuartierComponent,
-    CommandeComponent,
     ProduitComponent,
     NotFoundComponentComponent,
     CatagolueComponent,
@@ -90,13 +93,19 @@ const routes:Routes = [
     DetailMenuComponent,
     PanierComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LigneDeCommandeComponent,
+    DetailCommandeComponent,
+    ListerAdminComponent,
+    DetailAdminCommComponent,
+
     ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
     FormsModule,
+    AdminModule,
     Ng2SearchPipeModule
   ],
   providers: [],

@@ -10,7 +10,7 @@ export class ZonesService {
 url="http://127.0.0.1:8001/api/zones"
 
 
-  constructor(private http:HttpClient) {
+  constructor(public http:HttpClient) {
 
   }
 
@@ -19,7 +19,7 @@ url="http://127.0.0.1:8001/api/zones"
   }
 
   detailgetZones(id:number):Observable<any> {
-   return this.http.get<any>(this.url+'/'+id);
+   return this.http.get<any>(this.url+'/'+id+'commandes');
   }
 
 }

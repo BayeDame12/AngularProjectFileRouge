@@ -1,0 +1,89 @@
+<div class="d-flex justify-content-center  mt-1 ">
+  <h1 class="burg text-warning">Bienvenue Admin</h1>
+
+
+  <nav class="navbar navbar-expand-lg navbar-warnig bg-warnig ">
+    <div class="container-fluid">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="">
+        <div class="navbar-nav text-warning">
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="form-group mb-4 container">
+  <input class="form-control"  type="date" >
+  <h3 class="d-flex justify-content-center">Zone Disponible</h3>
+  <td class="" *ngFor="let items of zoness">
+    <ul class="">
+      <li><a  class="btn btn-warning " [routerLink]="[ 'livraisons', items['id'] ]">{{items['nomZone']}}</a></li> 
+    </ul>
+  </td>
+</div>
+<div class="listecommande container" >
+
+  <!-- <div *ngIf="formateDateToday()==(listCom['dateCommande'])">
+    <h3>Les date d aujourdui</h3>
+  </div> -->
+
+<table class="table align-middle mb-0 border " >
+  <thead class="bg-dark">
+
+    <tr class="text-warning">
+      <th>No Commande</th>
+      <th>Heure</th>
+      <th>Clients</th>
+      <th>Etat</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let item of listCom ">
+    <tr *ngIf="((item['dateCommande']  | date:'HH:MM'))">
+      <td>
+        <div class="d-flex align-items-center">
+          <div class="ms-3">
+            <p class="fw-bold mb-1">{{item['numeroCommande']}}</p>
+          </div>
+        </div>
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{item['dateCommande']  | date:"HH:MM"}}</p>
+      </td>
+      <td class="d-flex justify-content-lg-evenly">
+
+
+        <p class="fw-normal ">{{item['client']['telephone']}}</p>
+
+      </td>
+      <td class="">{{item['etatCommande']}}</td>
+
+      <td class="d-flex justify-content-evenly " >
+        <button  type="button" class=" btn btn-success  d-flex justify-content-center " *ngIf="item['etatCommande'] =='en cours'">valider</button>
+        <button  type="button" class=" btn btn-danger  d-flex justify-content-center " *ngIf="item['etatCommande']!='en cours'">annuler</button>
+        <button  type="button" class=" btn btn-primary  d-flex justify-content-center "  [routerLink]="['/detail-admin-com']" >detail</button>
+      </td>
+    </tr>
+
+
+  </tbody>
+</table>
+
+
+
+
+
+
+</div>
+

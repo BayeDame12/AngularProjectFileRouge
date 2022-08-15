@@ -40,19 +40,23 @@
                       </td>
                       <td class="align-middle border-bottom-0">
 
-
-
-                        <div class="d-flex mb-4" style="max-width: 300px">
-
-                          <button class="btn btn-outline-warning "   (click)="incrementq(tabpaniers,-1)">-</button>
-                          <input id="form1" min="0" name="quantite"  value="{{tabpaniers.quantite}}"   type="number" class="form-control" />
-                          <button class="btn btn-outline-warning "   (click)="incrementq(tabpaniers,1)">+</button>
-
+                        <div class="d-flex " style="max-width: 180px">
+                          <button class="btn btn-dark px-3 me-2 bg-dark "
+                                  onclick="this.parentNode.querySelector('input[type=number]').stepDown()" (click)="decrementq(quant.value)" >
+                            <i class="fas fa-minus text-warning">-</i>
+                          </button>
+                          <div class="form-outline">
+                            <input id="" min="1" name="quantity" #quant  value="1" type="number" class="form-control" />
+                          </div>
+                          <button class="btn btn-dark px-3 ms-2"
+                                  onclick="this.parentNode.querySelector('input[type=number]').stepUp()" (click)="incrementq(quant.value)"   >
+                            <i class="fas fa-plus text-warning">+</i>
+                          </button>
                         </div>
 
                       </td>
                       <td class="align-middle border-bottom-0">
-                        <p class="mb-0" style="font-weight: 500;">{{tabpaniers.prix*tabpaniers.quantite}}</p>
+                        <p class="mb-0" style="font-weight: 500;">{{tabpaniers.prix*(+quant.value)}}</p>
                       </td>
                       <button class="btn btn-danger w-100 text-danger mt-3" (click)="supprimerCart(tabpaniers)">Supprimer</button>
 
@@ -62,16 +66,16 @@
               </div>
 
             </div>
-            <!-- Single item -->
             <div class="row">
               <div class="card mb-4">
-                <div class="card-header py-3 justify-content-center">
-                  <button  type="button" class=" btn btn-warning  d-flex justify-content-center" [disabled]="!commande" (click)="postCommande()">Commander</button>
+                <div class="card-header py-3 d-flex justify-content-between">
+                  <button  type="button" class=" btn btn-warning  d-flex justify-content-center" [disabled]="!commande" (click)="validCommand()" (click)="(suptabcommande())">Commander</button>
+                  <button  type="button" class=" btn btn-warning  d-flex justify-content-center"  [routerLink]="['/detail-commande']">Lister Commander</button>
+
                 </div>
               </div>
 
             </div>
-            <!-- Single item -->
           </div>
         </div>
 
@@ -96,7 +100,7 @@
           <div class="card-body">
 
 
-                    <button type="button" class="btn btn-dark text-dark btn-lg btn-block bg-warning">Total a Payer={{somme}}Cfa</button>
+                    <button type="button"   class="btn btn-dark text-dark btn-lg btn-block bg-warning">Total a Payer={{somme}}Cfa</button>
           </div>
         </div>
       </div>
@@ -104,8 +108,6 @@
   </div>
 </section>
 
-
-<!--
 
         <section class="h-100 h-custom d-flex">
         <div class="d-flex  card-header w-25 h-75  border mt-3 mb-5 ">
@@ -118,7 +120,6 @@
                 <th scope="col" class="h5">Nom Zone</th>
               </tr>
 
-
             <tbody >
               <tr >
                 <th scope="row" class="border-bottom-0">
@@ -127,8 +128,9 @@
                       <div class="form-group">
                         <label for="alivrer"></label>
                         <div *ngFor="let zone of zonestab async" class="d-flex justify-content-between ">
-                          <p>{{zone.nomZone}}</p>
-                          <input class="mb-4 " type="checkbox"  id="alivrer" name="" value="" [(ngModel)]="commande" [(ngModel)]="livrer" >
+                          <!-- <p>{{zone.nomZone}}</p> -->
+                          <input class="mb-4 " type="radio"  id="alivrer" name="zoneliv" value="" >
+                          <!-- [(ngModel)]="commande" [(ngModel)]="livrer"  -->
                         </div>
 
                       </div>
@@ -140,7 +142,6 @@
 
   </table>
 
- -->
 
 
 

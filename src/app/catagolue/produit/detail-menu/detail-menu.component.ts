@@ -39,7 +39,7 @@ boutton!:boolean;
 Ajouter!:boolean;
 nombre!:boolean;
 numb!:number;
-cpt:number=0;
+cpt:number=1;
 somme:number=0;
 menuTai!:any;
 Tai!:any;
@@ -67,6 +67,7 @@ ngOnInit(): void {
 
 
     const idetail:number =this.acRoute.snapshot.params['id'];
+console.warn(idetail);
 
   this.addpan.totalPrix().subscribe ((som)=>{
   som.forEach((element)=>{
@@ -210,11 +211,8 @@ addToCart(product:any) {
     }
 //BLOCK ET DEBLOQUER BOUTTON LES BOUTTON
 
-  deblockbutton(){
+
 
 
   }
 
-
-
-}

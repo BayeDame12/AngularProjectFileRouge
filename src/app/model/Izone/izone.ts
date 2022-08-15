@@ -1,11 +1,28 @@
 export interface Izone
 {
-  nomZone: string,
-  coutLivraison: number,
-  livraisons: [
-    string
-  ],
-  quartiers: [
-    string
-  ]
+  
+    id: number,
+    nomZone: string,
+    commandes: [
+      {
+        statutCommande: string,
+        client: {
+          adresse: string,
+          prenom: string,
+          nom: string,
+          telephone: string
+        },
+        Produits: [
+          {
+            quantite: number,
+            produit: {
+              id: number,
+              nom: string
+            }
+          }
+        ]
+      }
+    ]
+  
 }
+

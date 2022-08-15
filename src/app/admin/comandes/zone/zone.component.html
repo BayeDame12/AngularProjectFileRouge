@@ -1,0 +1,70 @@
+
+
+<table class="table align-middle mt-4 bg-white container table-bordered table-active table-hover table-warning" >
+    <thead class="bg-dark text-dark ">
+      <tr>
+        <th>Prenom</th>
+        <th>Nom</th>
+        <th>Telephone</th>
+        <th>Etat</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let liv of livreures">
+    <tr *ngIf="liv.etat=='disponible'">
+      <td><p>{{liv.prenom}}</p></td>
+      <td><p>{{liv.nom}}</p></td>
+      <td><p>{{liv.telephone}}</p></td>
+      <td><p>{{liv.etat}}</p></td>
+      <td><input type="radio" value="{{liv.id}}" name="radi" (change)="getIdLiv($event)"></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<table class="table align-middle mt-4 bg-white container table-responsive-md table-hover table-warning">
+    <thead class="bg-dark text-dark ">
+      <tr>
+        <th>Client</th>
+        <th>Numero_Commande</th>
+        <th>Produit</th>
+        <th>Quantite</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of mbaye ">
+      <tr>
+        <td>
+          <div class="d-flex align-items-center">
+            <img
+                src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                alt=""
+                style="width: 45px; height: 45px"
+                class="rounded-circle"
+                />
+            <div class="ms-3">
+              <p class="fw-bold mb-1">{{item.client['prenom']}}</p>
+              <p class="fw-bold mb-1">{{item.client['nom']}}</p>
+              <p class="fw-bold mb-1">{{item.client['telephone']}}</p>
+
+            </div>
+          </div>
+        </td>
+        <td>
+          <p class="fw-normal mb-1">{{item['numeroCommande']}}</p>
+        </td>
+        <td>
+          <span class="badge badge-success rounded-pill d-inline">Active</span>
+        </td>
+        <td>{{item['Produits']}}</td>
+        <td>
+          <input type="checkbox" name="produits" value="{{item.id}}"  (change)="getId($event)" >
+        </td>
+      </tr>
+    </tbody>
+
+    <div class="card-header py-5 d-flex justify-content- container" >
+              <button  type="button" class=" btn btn-warning  d-flex justify-content-center" (click)="valideLivraison()"   [disabled]="hide" [routerLink]="['/livraisons']" >Livraison</button >
+    </div>
+
+  </table>

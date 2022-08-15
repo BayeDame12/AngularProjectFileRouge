@@ -4,6 +4,8 @@ import { Iburger } from 'src/app/model/Iburger/iburger';
 import { Imenu } from '../../model/Imenu/imenu';
 import { Icommande } from '../../model/Icommande/icommande';
 import { HttpClient } from '@angular/common/http';
+import { Ilivraison } from 'src/app/model/Ilivraison/ilivraison';
+import { ZonesService } from '../zone/zone.service';
 
 
 @Injectable({
@@ -78,37 +80,42 @@ addToCart(product: Iburger) {
 
     }
 
-//COMMANDE*********************
-    command:Array<any>=[];
+//****************COMMANDE*********************
+    command:{quantite:number,produit:string}[]=[];
     url="http://127.0.0.1:8001/api/commandes";
 
   getCommandeLine(){
   this.items$.subscribe((data:any)=>{
     data.forEach((product:any)=>{
+      this.command.push({
+        "quantite": product.quantite,
+        "produit": "/api/produits/"+product.id
 
-  this.command.push({
-  "produit": product,
-  "quantite": product.quantite})
-
+      })
+      console.log(this.command)
     })
   })
    return this.command;
   }
-    postCommande(body:Icommande){
-    this.http.post<Icommande>(this.url,body).subscribe()
-    }
 
+     //"zone":"/api/zones/2"        "client":"/api/clients/2"
+    valideCommande() {
+    let body:Icommande=
+     {
+      "Produits":this.getCommandeLine(),
+     }
 
-    getPanier(){
+  console.log(body)
 
-    return JSON.parse(localStorage.getItem('products') || '[]')
-    }
-
-
-
-
+  this.http.post<Icommande>(this.url,body).subscribe()
 
   }
+
+
+
+}
+
+
 
 
 

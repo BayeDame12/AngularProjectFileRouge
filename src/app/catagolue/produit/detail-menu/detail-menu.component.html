@@ -24,7 +24,7 @@
 
             <td>
               <div>
-                <p class="lead fw-normal mb-0">{{menu.prix}}</p>
+                <p class="lead fw-normal mb-0">{{menu.prix * (+quant.value)}}</p>
               </div>
             </td>
           </tr>
@@ -56,18 +56,18 @@
      <p class="d-flex justify-content-center">BOISSONS</p>
      <p> {{Tai.quantity}}.{{menuTai.libelle}}</p>
 
-     <div class="d-flex " style="max-width: 180px">
-       <button class="btn btn-primary px-3 me-2"
-         onclick="this.parentNode.querySelector('input[type=number]').stepDown()" (click)="decrementq(quant.value)">
-         <i class="fas fa-minus"></i>
+     <div class="d-flex border " style="max-width: 180px">
+       <button class="btn btn-dark h-25"
+         onclick="this.parentNode.querySelector('input[type=number]').stepDown()" (click)="decrementq(quant.value)" >
+         <i class="fas fa-minus text-warning">-</i>
        </button>
        <div class="form-outline">
        <img src="{{this.boiso.image}}" alt="">
-         <input id="" min="0" name="quantity" #quant  value="0" type="number" class="form-control" />
+         <input id="" min="1" name="quantity" #quant  value="1" type="number" class="form-control" />
        </div>
-       <button class="btn btn-primary px-3 ms-2"
-       onclick="this.parentNode.querySelector('input[type=number]').stepUp()" (click)="incrementq(quant.value)" >
-       <i class="fas fa-plus"></i>
+       <button class="btn btn-dark h-25"
+       onclick="this.parentNode.querySelector('input[type=number]').stepUp()" (click)="incrementq(quant.value)"  *ngIf="+quant.value<Tai.quantity" >
+       <i class="fas fa-plus text-warning">+</i>
        </button>
    </div>
 

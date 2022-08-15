@@ -1,0 +1,20 @@
+
+
+<table class="table align-middle mt-4 bg-white container table-bordered table-active table-hover table-warning" >
+    <thead class="bg-dark text-dark ">
+      <tr>
+        <th>Etat_Livraison</th>
+        <th>Numero_Commande</th>
+        <th>Date_Commande</th>
+        <th>Livreur</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr class="" *ngFor="let liv of livraison">
+        <td><p>{{liv.etatLivraison}}</p></td>
+       <td><p>{{liv.commandes.dateCommande}}</p></td>
+      <td><p>{{liv.telephone}}</p></td>
+      <td><p>{{liv.livreur.prenom}}</p></td>
+    </tr>
+    </tbody>
+</table>

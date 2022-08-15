@@ -10,6 +10,7 @@ export class CommandeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
