@@ -1,1 +1,34 @@
-<p>livreur works!</p>
+
+<app-admin></app-admin>
+
+<table class="table align-middle mt-4 bg-white container table-bordered table-active table-hover " >
+    <thead class="bg-dark text-warning ">
+      <tr>
+        <th>Etat_Livraison</th>
+        <th>Numero_Commande</th>
+        <th>Date_Commande</th>
+        <th>Livreur</th>
+        <th>etat_Livreur</th>
+
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr >
+        <td><p>{{infcom.etatCommande}}</p></td>
+       <td><p>{{infcom.numeroCommande}}</p></td>
+       <td><p>{{infcom.dateCommande}}</p></td>
+      <td>
+        <p>{{livraison.prenom}}   {{livraison.nom}}</p>
+      </td>
+          <td>
+            <p>{{livraison.etatLivreur}}</p>
+          </td>
+      <td class="d-flex">
+        <button  type="button" class=" btn btn-danger  d-flex justify-content-center "(click)="changeEtatNonpayer(infcom)">Non Payer</button>
+        <button  type="button" class=" btn btn-success  d-flex justify-content-center" (click)="changeEtatPayer(infcom);changeEtatLivreur(livraison)">Payer</button>
+
+      </td>
+    </tr>
+    </tbody>
+</table>

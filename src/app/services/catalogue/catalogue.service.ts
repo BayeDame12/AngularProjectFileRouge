@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Iburger } from 'src/app/model/Iburger/iburger';
-import { Imenu } from 'src/app/model/Imenu/imenu';
+import {Imenu} from "../../model/Imenu/imenu";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,9 @@ export class CatalogueService {
 
           }
           //**********RECUPERATION MENUS COTE BACK********** */
+
+
+
           getMenu():Observable<Imenu[]> {
 
             return this.http.get<Imenu[]>(this.url+'menus')

@@ -22,6 +22,9 @@ import { DetailCommandeComponent } from './commande/detail-commande/detail-comma
 import { ListerAdminComponent } from './commande/lister-admin/lister-admin.component';
 import { DetailAdminCommComponent } from './commande/lister-admin/detail/detail-admin-comm/detail-admin-comm.component';
 import { AdminModule } from './admin/admin.module';
+import { DetailCommandeClientsComponent } from './commande/ligne-de-commande/detail-commande-clients/detail-commande-clients.component';
+import {ZoneComponent} from "./admin/comandes/zone/zone.component";
+
 
 
 const routes:Routes = [
@@ -56,7 +59,10 @@ const routes:Routes = [
     path:'detail-commande',component:DetailCommandeComponent
   },
   {
-    path:'ligne-commande',component:LigneDeCommandeComponent
+    path:'ligne-commande/:id',component:LigneDeCommandeComponent
+  },
+  {
+    path:'detail-client-commande/:id',component:DetailCommandeClientsComponent
   },
   {
     path:'list-admin',component:ListerAdminComponent
@@ -67,6 +73,7 @@ const routes:Routes = [
   {
     path:'produit',component:ProduitComponent
   },
+
   {
     path:'',component:CatagolueComponent
   },
@@ -98,6 +105,8 @@ const routes:Routes = [
     DetailCommandeComponent,
     ListerAdminComponent,
     DetailAdminCommComponent,
+    DetailCommandeClientsComponent,
+
 
     ],
   imports: [

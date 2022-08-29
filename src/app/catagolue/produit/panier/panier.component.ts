@@ -20,32 +20,27 @@ export class PanierComponent  {
   somme:number=0;
   zonestab!:Izone[]
   cpt:number=0;
-
-
-
+idZon!:number;
+sosprix:any=0
   ngOnInit(): void
   {
+    this.somme = this.cartService.totalPrix();
+    this.sosprix=this.cartService.sousPrix()
 
+   
     this.commande=false;
     this.livrer=false;
 
-    this.cartService.totalPrix().subscribe((som)=>{
-      som.forEach(element => {
-        console.warn(element);
-        this.somme+=element.prix*element.quantite;
-      });
-    });
-
-    console.warn(this.cartService.getCommandeLine())
+   // console.warn(this.cartService.getCommandeLine())
 
 
     this.zones.getZones().subscribe(
 
       data=>{
         this.zonestab=data;
-        console.log(data);
+        //console.log(data);
         data.forEach(element =>{
-          console.log(element);
+       //   console.log(element);
                                         })
             }
   );
@@ -62,6 +57,9 @@ export class PanierComponent  {
     {
       this.cpt++;
     }
+    //localStorage.setItem('products', JSON.stringify(products));
+
+    console.log(this.cpt+1)
   }
   decrementq(q:any){
 
@@ -69,17 +67,36 @@ export class PanierComponent  {
     {
       this.cpt--;
     }
+   // localStorage.setItem('products', JSON.stringify(products));
+
+    console.log(this.cpt-1)
+
   }
 validCommand(){
-
+  //(click)="(suptabcommande())"
      this.cartService.valideCommande()
-  console.log(this.cartService.valideCommande())
+     setTimeout(function(){
+      window.location.reload();
+    }, 1000);
 }
   suptabcommande() {
     this.cartService.getCommandeLine().forEach(elem => {
       this.supprimerCart(elem)
     })
   }
+  updateprix(){
+    this.somme=this.cartService.totalPrix()
+  }
+
+  getIdZone(even){
+    this.cartService.getIdZone(+even.target.value)
+    this.idZon=even.target.value;
+    console.log(this.idZon)
+  }
+  quantite(tabpanier,quant):any{
+
+  }
+
 }
 
 

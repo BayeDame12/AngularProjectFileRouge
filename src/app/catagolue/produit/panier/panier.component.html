@@ -1,3 +1,4 @@
+<app-header></app-header>
 <section class="h-100 gradient-custom">
   <div class="container py-5">
     <div class="row d-flex justify-content-center my-4">
@@ -8,10 +9,18 @@
             <input class="d-none" type="checkbox"  id="alivrer" name="" value=""  [(ngModel)]="commande" [(ngModel)]="!livrer">
             <h1 class="burg text-warning ">PANIER</h1>
 
+
+            <select class="custom-select bg-warning" *ngIf="livrer==true" (change)="getIdZone($event)">
+              <option selected>Veillez choisir une zonz de Livraison</option>
+              <option *ngFor="let zone of zonestab " value="{{zone.id}}"  >{{zone.nomZone}}</option>
+
+            </select>
+
             <label for="surplace" class=" btn btn-warning btn-lg btn-block" >Sur place</label>
             <input class="d-none" type="checkbox"  id="surplace" name="" value="" [(ngModel)]="commande" >
           </div>
           <div class="card-body">
+
             <div class="row">
 
               <div class=" ">
@@ -19,7 +28,8 @@
                   <thead>
                     <tr>
                       <th scope="col" class="h5">Produit</th>
-                      <th scope="col-8">Prix</th>
+                      <th scope="col">quantite</th>
+                      <th scope="col">Prix</th>
                       <th scope="col">Quantité</th>
                       <th scope="col">Sous-Prix</th>
                       <th scope="col"></th>
@@ -31,32 +41,37 @@
                         <div class="d-flex align-items-center">
                           <img src="{{tabpaniers.image}}" class="img-fluid rounded-3"
                             style="width: 120px;" alt="Book">
-                            <div class="flex-column ms-5">
-                              <p class="mb-2">{{tabpaniers.prix}}</p>
-                            </div>
+
                           </div>
                       </th>
                       <td class="align-middle border-bottom-0">
+                        <p class="mb-2">{{tabpaniers.quantite}}</p>
+
                       </td>
+                      <td class="align-middle border-bottom-0">
+                        <p class="mb-2">{{tabpaniers.prix}}</p>
+
+                      </td>
+
                       <td class="align-middle border-bottom-0">
 
                         <div class="d-flex " style="max-width: 180px">
                           <button class="btn btn-dark px-3 me-2 bg-dark "
-                                  onclick="this.parentNode.querySelector('input[type=number]').stepDown()" (click)="decrementq(quant.value)" >
+                                  onclick="this.parentNode.querySelector('input[type=number]').stepDown()" (click)="decrementq(quant.value);updateprix();quantite(tabpaniers,quant.value)" >
                             <i class="fas fa-minus text-warning">-</i>
                           </button>
                           <div class="form-outline">
-                            <input id="" min="1" name="quantity" #quant  value="1" type="number" class="form-control" />
+                            <input id="" min="1" name="quantity" #quant  value="{{tabpaniers.quantite}}" type="number" class="form-control" />
                           </div>
                           <button class="btn btn-dark px-3 ms-2"
-                                  onclick="this.parentNode.querySelector('input[type=number]').stepUp()" (click)="incrementq(quant.value)"   >
+                                  onclick="this.parentNode.querySelector('input[type=number]').stepUp()"  (click)="incrementq(quant.value);updateprix();quantite(tabpaniers,quant.value)"   >
                             <i class="fas fa-plus text-warning">+</i>
                           </button>
                         </div>
 
                       </td>
                       <td class="align-middle border-bottom-0">
-                        <p class="mb-0" style="font-weight: 500;">{{tabpaniers.prix*(+quant.value)}}</p>
+                        <p class="mb-0" style="font-weight: 500;">{{(tabpaniers.prix*tabpaniers.quantite)*(+quant.value)}}     </p>
                       </td>
                       <button class="btn btn-danger w-100 text-danger mt-3" (click)="supprimerCart(tabpaniers)">Supprimer</button>
 
@@ -70,7 +85,7 @@
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex justify-content-between">
                   <button  type="button" class=" btn btn-warning  d-flex justify-content-center" [disabled]="!commande" (click)="validCommand()" (click)="(suptabcommande())">Commander</button>
-                  <button  type="button" class=" btn btn-warning  d-flex justify-content-center"  [routerLink]="['/detail-commande']">Lister Commander</button>
+                  <button type="button"   class="btn btn-dark text-dark btn-lg btn-block bg-warning">Total a Payer={{somme}}</button>
 
                 </div>
               </div>
@@ -92,56 +107,17 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <div class="card-header py-3">
-            <h5 class="mb-0">Summary</h5>
-          </div>
-          <div class="card-body">
 
-
-                    <button type="button"   class="btn btn-dark text-dark btn-lg btn-block bg-warning">Total a Payer={{somme}}Cfa</button>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
+  </div>
+
 </section>
 
 
-        <section class="h-100 h-custom d-flex">
-        <div class="d-flex  card-header w-25 h-75  border mt-3 mb-5 ">
-          <div class=" border-dark w-100  mt-5">
-            <h1 class="burg text-warning bg-dark">Zone_Livraison</h1>
-            <!-- ZONE DE LIVRAISON -->
-            <table  class="table ">
-
-              <tr class="d-flex justify-content-center">
-                <th scope="col" class="h5">Nom Zone</th>
-              </tr>
-
-            <tbody >
-              <tr >
-                <th scope="row" class="border-bottom-0">
-                  <div class="d-flex align-items-center">
-                    <div class="flex-column ms-4">
-                      <div class="form-group">
-                        <label for="alivrer"></label>
-                        <div *ngFor="let zone of zonestab async" class="d-flex justify-content-between ">
-                          <!-- <p>{{zone.nomZone}}</p> -->
-                          <input class="mb-4 " type="radio"  id="alivrer" name="zoneliv" value="" >
+                          <!--    <div *ngFor="let zone of zonestab async" class="d-flex justify-content-between ">-->
+                               <!-- <p>{{zone.nomZone}}</p> -->
+                          <!--   <input class="mb-4 " type="radio"  id="alivrer" name="zoneliv" value="" >-->
                           <!-- [(ngModel)]="commande" [(ngModel)]="livrer"  -->
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                </th>
-
-            </tbody>
-
-  </table>
-
 
 
 

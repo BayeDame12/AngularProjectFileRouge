@@ -1,6 +1,6 @@
-
+<app-admin></app-admin>
 <div class="d-flex justify-content-center  mt-1 ">
-    <h1 class="burg text-warning">Bienvenue Admin</h1>
+  <button  type="button" class=" btn btn-warning  d-flex justify-content-center"  [routerLink]="['/detail-commande']">Lister Commander Clients</button>
 
 
     <nav class="navbar navbar-expand-lg navbar-warnig bg-warnig ">
@@ -24,19 +24,29 @@
     </nav>
   </div>
 
-  <div class="form-group mb-4 container" >
-    <input class="form-control" name="search"  type="date" [(ngModel)]="searchText" autocomplete="off" >
+    <div class="container">
+      <div *ngIf="searchText==formateDateToday()">
+        <h3 class="d-flex justify-content-center">Les Commandes D aujaurdui</h3>
+      </div>
+      <div *ngIf="searchText!=formateDateToday()">
+        <h3 class="d-flex justify-content-center">Les Commandes Du {{searchText}}</h3>
+      </div>
+
+    </div>
 
 
-    <!-- <input class="form-control" type="date" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442; chercher le Burger ou le Menu de votre choix"> -->
 
-    <h3 class="d-flex justify-content-center">Zone Disponible</h3>
-    <td class="" *ngFor="let items of zoness">
-      <ul class="">
-        <li><a  type="button" class="btn btn-warning " [routerLink]="['zone',items['id']]">{{items['nomZone']}}</a></li>
-      </ul>
-    </td>
-  </div>
+<div class="form-group mb-4 container" >
+   <input class="form-control" name="search"  type="date" [(ngModel)]="searchText" autocomplete="off" value="{{searchText}}">
+
+  <h3 class="d-flex justify-content-center">Zone Disponible</h3>
+  <td class="" *ngFor="let items of zoness">
+    <ul class="">
+      <li><a  type="button" class="btn btn-warning " [routerLink]="['zone',items['id']]" >{{items['nomZone']}}</a></li>
+    </ul>
+  </td>
+</div>
+
   <div class="listecommande container" >
 
   <table class="table align-middle mb-0  table-hover table-active table-responsive table-bordered" >
@@ -51,7 +61,7 @@
       </tr>
     </thead>
 
-      <tbody *ngFor="let item of listCom | filter:searchText">
+   <tbody *ngFor="let item of listCom | filter:searchText">
       <tr>
         <td>
           <div class="d-flex align-items-center">
@@ -61,20 +71,17 @@
           </div>
         </td>
         <td>
-          <p class="fw-normal mb-1">{{item['dateCommande']  | date:"HH:MM"}}</p>
+          <p class="fw-normal mb-1">{{item['dateCommande']  | date:"shortTime"}}</p>
         </td>
         <td class="d-flex justify-content-lg-evenly">
-
-
-          <p class="fw-normal ">{{item['client']['telephone']}}</p>
 
         </td>
         <td class="">{{item['etatCommande']}}</td>
 
         <td class="d-flex justify-content-evenly " >
-          <button  type="button" class=" btn btn-success  d-flex justify-content-center " *ngIf="item['etatCommande'] =='en cours'">valider</button>
-          <button  type="button" class=" btn btn-danger  d-flex justify-content-center " *ngIf="item['etatCommande']!='en cours'">annuler</button>
-          <button  type="button" class=" btn btn-primary  d-flex justify-content-center "  [routerLink]="['/detail-admin-com']" >detail</button>
+          <button  type="button" class=" btn btn-success  d-flex justify-content-center " *ngIf="item['etatCommande'] =='en cours'" (click)="changeEtat(item)">valider</button>
+          <button  type="button" class=" btn btn-danger  d-flex justify-content-center " *ngIf="item['etatCommande']=='commande en cours de preparation'" (click)="changeEtat(item)">annuler</button>
+          <button  type="button" class=" btn btn-primary  d-flex justify-content-center "  [routerLink]="['id-comande',item.id]" >detail</button>
         </td>
       </tr>
     </tbody>

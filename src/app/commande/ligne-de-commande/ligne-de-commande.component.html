@@ -1,40 +1,68 @@
-<div class="d-flex justify-content-center bg-dark mt-1">
+<app-header></app-header>
+<section class="bg-warning container ">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 mb-4 mb-sm-5">
+        <div class="card card-style1 border-0">
+          <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
+            <div class="row align-items-center">
+              <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="...">
+              </div>
+              <div class="col-lg-6 px-xl-10 text-dark">
+                <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
+                  <h3 class="h2 text-white mb-0">{{detailclient.prenom}}   {{detailclient.nom}}</h3>
+                </div>
+                <ul class="list-unstyled mb-1-9">
+                  <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">adresse:</span> {{detailclient.adresse}}</li>
+                  <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Email:</span>{{detailclient.email}}</li>
+                  <li class="display-28"><span class="display-26 text-secondary me-2 font-weight-600">Telephone:</span>{{detailclient.telephone}}</li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<div class="d-flex justify-content-center bg-dark mt-1 container">
   <h1 class="burg text-warning">Detail De Commandes</h1>
 </div>
+<input class="form-control container mt-2" name="search"  type="date" [(ngModel)]="searchText" autocomplete="off" value="{{searchText}}">
+<div *ngIf="searchText==formateDateToday()" class="container">
+  <h3 class="d-flex justify-content-center">Les Commandes D'aujordui</h3>
+</div>
+<div *ngIf="searchText!=formateDateToday()" class="container">
+  <h3 class="d-flex justify-content-center">Les Commandes Du {{searchText}}</h3>
+</div>
+<table class="table align-middle mb-0 bg-white container table-bordered table-hover table-active">
 
-<table class="table align-middle mb-0 bg-white">
+
   <thead class="bg-light">
     <tr>
-      <th>produit_nom</th>
-      <th>quantite</th>
-      <th>prix</th>
+      <th>Numero_Commande</th>
+      <th>Etat_Commande</th>
+      <th>Date_Commande</th>
       <th>Actions</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngFor="let item of tab | filter:searchText">
     <tr>
       <td>
-        <div class="d-flex align-items-center">
-          <img
-              src="{{detailcommandee.Produits['0']['produit']['image']}}"
-              alt=""
-              style="width: 45px; height: 45px"
-              class="rounded-circle"
-              />
-          <div class="ms-3">
-            <p>{{detailcommandee.Produits['0']['produit']['nom']}}</p>
-          </div>
-        </div>
+       <p>{{item.numeroCommande}}</p>
+
       </td>
       <td>
-        <p class="fw-normal mb-1">{{detailcommandee.Produits['0']['quantite']}}</p>
+        <p class="fw-normal mb-1">{{item.etatCommande}}</p>
       </td>
 
-      <td>{{detailcommandee.Produits['0']['produit']['prix']}}</td>
-      <td>
-        <button type="button" class="btn btn-link btn-sm btn-rounded">
-          Edit
-        </button>
+      <td>{{item.dateCommande}}</td>
+      <td class="d-flex justify-content-evenly" >
+        <button  type="button" class=" btn btn-danger " (click)="change(item)"  [disabled]="item.etatCommande!='en cours'">annuler</button>
+        <!-- <button  type="button" class=" btn btn-primary" [routerLink]="['/detail-client-commande',item['id']]" >detail</button> -->
       </td>
     </tr>
 

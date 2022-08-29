@@ -7,7 +7,8 @@ import { Izone } from 'src/app/model/Izone/izone';
   providedIn: 'root'
 })
 export class ZonesService {
-url="http://127.0.0.1:8001/api/zones"
+url="http://127.0.0.1:8001/api/zones/"
+url1="http://127.0.0.1:8001/api/zones"
 
 
   constructor(public http:HttpClient) {
@@ -15,11 +16,11 @@ url="http://127.0.0.1:8001/api/zones"
   }
 
   getZones():Observable<Izone[]> {
-   return this.http.get<Izone[]>(this.url);
+   return this.http.get<Izone[]>(this.url1);
   }
 
   detailgetZones(id:number):Observable<any> {
-   return this.http.get<any>(this.url+'/'+id+'commandes');
+   return this.http.get<any>(this.url+id+'/'+'commandes');
   }
 
 }

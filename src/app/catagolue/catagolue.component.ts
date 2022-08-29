@@ -15,8 +15,8 @@ import { PanierService } from '../services/panier/panier.service';
 
 export class CatagolueComponent implements OnInit {
 //pour afficher tableau burger & menu sur catalogue
-menu!:Imenu[];
 catalogue!:Icatalogue[];
+menu!:Imenu[];
 burger!:Iburger[];
 panier:Iburger  []=[];
 searchText!:any
@@ -26,7 +26,6 @@ searchText!:any
 
   ngOnInit(): void {
 //ABONNEMENTSUBQCRIBE
-
 
     this.Catalog.getBurger().subscribe(
       data=>{

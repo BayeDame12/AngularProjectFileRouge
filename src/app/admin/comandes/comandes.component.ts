@@ -19,7 +19,7 @@ export class ComandesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //this.searchText=this.formateDateToday();
+    this.searchText=this.formateDateToday();
 
     this.listcommande.getLigncommande().subscribe(data=>{
       this.listCom=data;
@@ -29,27 +29,38 @@ export class ComandesComponent implements OnInit {
           this.zoness=data;
           console.log(data);
           data.forEach(element =>{
-            console.log(element);
                                           })
               }
     );
         this.listCom.forEach(commande=>{
         this.comAnnul=commande;
-
      })
         })
-
-
-
-  }
+      }
   formateDateToday(){
     let date=new Date();
     let day =date.toLocaleDateString().slice(0,2);
     let month = date.toLocaleDateString().slice(3,5);
     let year= date.toLocaleDateString().slice(6);
     return year+"-"+month+"-"+day ;
+
     //2022-08-10
   }
+
+  changeEtat(item:any){
+    if (item.etatCommande=='en cours'){
+      this.listcommande.Ajour(item.id,{'etatCommande':'commande en cours de preparation'})
+      setTimeout(function(){
+        window.location.reload();
+      }, 1000);
+    }
+    else if (item.etatCommande=='commande en cours de preparation'){
+      this.listcommande.Ajour(item.id,{'etatCommande':'commande annuler'})
+    }
+    setTimeout(function(){
+      window.location.reload();
+    }, 1000);
   }
 
+}
 

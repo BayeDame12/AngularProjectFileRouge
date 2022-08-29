@@ -10,7 +10,10 @@ export interface Ilivraison {
                         dateCommande: string
                       }
                    ],
-          livreur: string
-      
+          livreur: {
+            id:number
+            etatLivreur: string
+          }
+
 
 }

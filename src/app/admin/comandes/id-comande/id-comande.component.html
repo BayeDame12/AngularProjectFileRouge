@@ -1,1 +1,87 @@
-<p>id-comande works!</p>
+<app-admin></app-admin>
+
+<table class="table align-middle mb-0  table-hover table-active table-responsive table-bordered" >
+    <thead class="bg-dark">
+  
+    <tr class="text-warning">
+      <th>Numero_Commande</th>
+      <th>Date_Commande</th>
+      <th>Etat_Commande</th>
+      <th>Client</th>
+      <th>Telephone</th>
+    </tr>
+    </thead>
+  
+    <tbody>
+    <tr>
+      <td>
+        <div class="d-flex align-items-center">
+          <div class="ms-3">
+            <p class="fw-bold mb-1">{{commandeDetail.numeroCommande}}</p>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+          <div class="ms-3">
+            <p class="fw-bold mb-1">{{commandeDetail.dateCommande}}</p>
+          </div>
+        </div>
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{commandeDetail.etatCommande}}</p>
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{clientDetail.prenom}}   {{clientDetail.nom}}</p>
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{clientDetail.telephone}}</p>
+      </td>
+ 
+
+
+    </tr>
+    </tbody>
+  </table>
+  
+<table class="table align-middle mb-0  table-hover table-active table-responsive table-bordered" >
+    <thead class="bg-dark">
+  
+    <tr class="text-warning">
+      <th>Etat_Produit</th>
+      <th>Nom_Produit</th>
+      <th>Image</th>
+      <th>Prix</th>
+    </tr>
+    </thead>
+  
+    <tbody>
+    <tr>
+      <td>
+        <div class="d-flex align-items-center">
+          <div class="ms-3">
+        </div>
+        <!-- <img src="{{Prod.images}}" alt=""> -->
+    </div>
+</td>
+<td>
+    <div class="d-flex align-items-center">
+        <div class="ms-3">
+              <p class="fw-bold mb-1">{{Prod.etatProduit}}</p>
+          </div>
+        </div>
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{Prod.prix}}</p>
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{Prod.nom}}</p>
+      </td>
+
+
+    </tr>
+    </tbody>
+  </table>
+
+  
+  

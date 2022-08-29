@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="d-flex justify-content-center bg-dark mt-1">
   <h1 class="burg text-warning">Listes Des Commandes</h1>
 </div>
@@ -37,7 +38,7 @@
       <td class="">{{item['Produits']['0']['quantite']}}</td>
       <td class="">{{item['etatCommande']}}</td>
       <td class="d-flex justify-content-ms-evenly">
-        <button  type="button" class=" btn btn-primary  d-flex justify-content-center" [routerLink]="['/ligne-commande',item.id]">detail</button>
+        <button  type="button" class=" btn btn-primary  d-flex justify-content-center" >detail</button>
         <button  type="button" class=" btn btn-danger  d-flex justify-content-center"   (click)="getIdcommande(item['id'])">annule</button>
       </td>
     </tr>

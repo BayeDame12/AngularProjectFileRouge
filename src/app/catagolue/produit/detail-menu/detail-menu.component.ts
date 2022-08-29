@@ -16,6 +16,7 @@ import { PanierService } from 'src/app/services/panier/panier.service';
 import { TailleboissonService } from 'src/app/services/taillBoisson/tailleboisson.service';
 import { ImenuTaille } from '../../../model/ImenuBoisson/imenuTaille';
 import { Itailleboisson } from '../../../model/ItaillBoisson/itailleboisson';
+import {elementAt} from "rxjs";
 
 
 @Component({
@@ -55,126 +56,52 @@ constructor( private menuDetailer:ActivatedRoute,private detail:CatalogueService
 }
 ngOnInit(): void {
 
- this.boutton=false;
- this.Ajouter=false;
- this.nombre;
- this.numb=1;
- this.commande=false;
+  this.boutton = false;
+  this.Ajouter = false;
+  this.nombre;
+  this.numb = 1;
+  this.commande = false;
 
 
-// const idMenu=this.menuDetailer.snapshot
-// console.log(idMenu);
+  const idetail: number = this.acRoute.snapshot.params['id'];
 
+  this.detail.detailgetMenu(idetail).subscribe(
+    data => {
+      this.menu = data;
+      console.log(data);
 
-    const idetail:number =this.acRoute.snapshot.params['id'];
-console.warn(idetail);
+      this.menu.Burgers.forEach(element => {
+        this.burger = element;
+      });
+      this.menu.Frites.forEach(element => {
+        this.frite = element;
+        //   console.log(this.frite)
+      });
+      this.menuTai=this.menu.menutailles['0']
+      console.log(this.menuTai.taille)
 
-  this.addpan.totalPrix().subscribe ((som)=>{
-  som.forEach((element)=>{
-  console.log(element);
-
-    this.somme+=element.prix*element.quantite;
-
-  })
-})
-
-
-    this.detail.detailgetMenu(idetail).subscribe(
-    data=>{
-        this.menu=data;
-    console.warn(data);
-
-        this.menuTai=data.menutailles['0']['taille'];
-         console.log(  data.menutailles['0']['taille']);
-         this.Tai=data.menutailles['0']
-         console.log(  data.menutailles['0']);
-         this.frite=data.Frites['0']
-         console.log(this.frite);
-         this.fritte=data.Frites['0']['frite']
-         console.log(this.fritte);
-
-         this.burger=data.Burgers['0']
-         console.log(this.burger);
-         this.burgger=data.Burgers['0']['burger']
-         this.boiso=data.menutailles['0']['taille']['tailleBoissons']['0']['boisson']
-console.log(this.boiso);
-
-      }
-      );
-
-    this.fritetab.getFrites().subscribe(
-          data=>{
-                      this.frites=data;
-                      console.log(data);
-                      data.forEach(element =>{
-        console.log(element)
-                                        })
-                }
-      );
-
-    this.boisontab.getBoissons().subscribe(
-          data=>{
-                      this.boissons=data;
-                      console.log(data);
-                      data.forEach(elements =>{
-                     console.log(elements);
-
-                                            })
-                }
-      );
+    }
+  );
 
 
 
-      this.menuFrites.getMenuFrite().subscribe(
-        data=>{
-                    this.menuFrite=data;
-                    console.log(data);
-                    data.forEach(element =>{
-                    console.log(element);
-
-                                      })
-              }
-    );
-
-
-      this.menuBurgers.getMenuBurger().subscribe(
-        data=>{
-                    this.menuBurger=data;
-                    console.log(data);
-                    data.forEach(element =>{
-                      console.log(element);
-
-                                      })
-              }
-    );
+}
 
 
 
-  this.menuTailles.getMenuTaille().subscribe(
-        data=>{
-                    this.menuTaille=data;
-                    console.log(data);
-                    data.forEach(elements =>{
-                      console.log(elements);
+  // this.tailleboiss.gettailleboisson().subscribe(
+  //       data=>{
+  //                   this.tailleboisse=data;
+  //                   // console.log(data);
+  //                   data.forEach(elements =>{
+  //                     // console.log(elements);
 
 
-                                          })
-              }
-    );
-
-  this.tailleboiss.gettailleboisson().subscribe(
-        data=>{
-                    this.tailleboisse=data;
-                    console.log(data);
-                    data.forEach(elements =>{
-                      console.log(elements);
+  //                                         })
+  //             }
+  //   );
 
 
-                                          })
-              }
-    );
-
-            }
 addToCart(product:any) {
   this.addpan.addToCart(product);
 }

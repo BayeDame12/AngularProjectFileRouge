@@ -1,3 +1,4 @@
+<app-admin></app-admin>
 
 
 <table class="table align-middle mt-4 bg-white container table-bordered table-active table-hover table-warning" >
@@ -11,12 +12,12 @@
       </tr>
     </thead>
     <tbody *ngFor="let liv of livreures">
-    <tr *ngIf="liv.etat=='disponible'">
+    <tr *ngIf="liv.etatLivreur=='disponible'">
       <td><p>{{liv.prenom}}</p></td>
       <td><p>{{liv.nom}}</p></td>
       <td><p>{{liv.telephone}}</p></td>
       <td><p>{{liv.etat}}</p></td>
-      <td><input type="radio" value="{{liv.id}}" name="radi" (change)="getIdLiv($event)"></td>
+      <td><input type="radio" value="{{liv.id}}" name="radi" (change)="getIdLiv($event)" ></td>
     </tr>
     </tbody>
 </table>
@@ -27,13 +28,15 @@
       <tr>
         <th>Client</th>
         <th>Numero_Commande</th>
+        <th>Etat_Commande</th>
+        <th>Date_Commande</th>
         <th>Produit</th>
         <th>Quantite</th>
         <th>Actions</th>
       </tr>
     </thead>
-    <tbody *ngFor="let item of mbaye ">
-      <tr>
+    <tbody *ngFor="let item of zoness " >
+      <tr *ngIf="item.etatCommande=='commande en cours de preparation'">
         <td>
           <div class="d-flex align-items-center">
             <img
@@ -43,28 +46,35 @@
                 class="rounded-circle"
                 />
             <div class="ms-3">
-              <p class="fw-bold mb-1">{{item.client['prenom']}}</p>
+              <!-- <p class="fw-bold mb-1">{{item.client['prenom']}}</p>
               <p class="fw-bold mb-1">{{item.client['nom']}}</p>
-              <p class="fw-bold mb-1">{{item.client['telephone']}}</p>
+              <p class="fw-bold mb-1">{{item.client['telephone']}}</p> -->
 
             </div>
           </div>
         </td>
         <td>
-          <p class="fw-normal mb-1">{{item['numeroCommande']}}</p>
+          <p class="fw-normal mb-1">{{item.numeroCommande}}</p>
         </td>
         <td>
-          <span class="badge badge-success rounded-pill d-inline">Active</span>
+          <p class="fw-normal mb-1">{{item.etatCommande}}</p>
         </td>
-        <td>{{item['Produits']}}</td>
+
+        <td>
+          <p class="fw-normal mb-1">{{item.dateCommande }}</p>
+        </td>
+        <td>
+          <!-- <span class="badge badge-success rounded-pill d-inline text-dark">{{item['Produits']['0'].produit.nom}}</span> -->
+        </td>
+        <td>{{item['Produits']['0'].quantite}}</td>
         <td>
           <input type="checkbox" name="produits" value="{{item.id}}"  (change)="getId($event)" >
         </td>
       </tr>
     </tbody>
 
-    <div class="card-header py-5 d-flex justify-content- container" >
-              <button  type="button" class=" btn btn-warning  d-flex justify-content-center" (click)="valideLivraison()"   [disabled]="hide" [routerLink]="['/livraisons']" >Livraison</button >
+    <div class="card-header py-5 d-flex justify-content- container" *ngIf="hideCommande==false && hideLivreur==false">
+      <button  type="button" class=" btn btn-warning  d-flex justify-content-center" (click)="valideLivraison()"  [routerLink]="['/livraisons']">Livraison</button >
     </div>
 
   </table>

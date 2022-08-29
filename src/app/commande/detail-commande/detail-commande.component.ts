@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {CommandeService} from "../../services/commande/commande.service";
-import {Icommande} from "../../model/Icommande/icommande";
-import {CatalogueService} from "../../services/catalogue/catalogue.service";
 import {ActivatedRoute} from "@angular/router";
 import {Listcomande} from "../../model/Icommande/listcomande";
 import { PanierService } from 'src/app/services/panier/panier.service';
@@ -56,7 +54,15 @@ comAnnul!:Listcomande;
   console.log(this.cartService.valideCommande())
   }
     getIdcommande(id:number){
-    this.listcommande.Ajour(id,{"etatCommande":"annuler"})
+    if (this.comAnnul['etatCommande']=='en cours'){
+      this.listcommande.Ajour(id,{"etatCommande":"annuler"})
+
+    }
+
+
+      setTimeout(function(){
+        window.location.reload();
+      }, 1000);
     }
 
 }

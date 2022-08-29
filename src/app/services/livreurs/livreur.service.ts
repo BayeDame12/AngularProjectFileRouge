@@ -44,7 +44,6 @@ export class LivreurService {
    this.commandeAlivrerID.push({
     "id": "api/commandes/"+commmande,
   });
-   console.log(this.commandeAlivrerID);
 
 
   }
@@ -54,13 +53,11 @@ export class LivreurService {
    this.commandeAlivrerID.splice(this.commandeAlivrerID.indexOf({
     "id": "api/commandes/"+commmande,
   }), 1);
-   console.log(this.commandeAlivrerID);
 
   }
 
   getIdLiv(id:number){
     this.idLivreur=id
-    console.log( this.idLivreur)
   }
 
        valideLivraison() {
@@ -70,17 +67,19 @@ export class LivreurService {
           "commandes": this.commandeAlivrerID,
           "livreur": {
             'id':"api/livreurs/"+this.idLivreur,
-            "etat": "indisponible"
+            "etatLivreur": "indisponible"
           }
          }
-
-
+         console.log(body)
       this.http.post<Ilivraison>(this.url1,body).subscribe()
 
       }
 
-
-
-
-
+      Ajoure(id:number,body:object)
+      {     
+        this.http.put<any>(this.url+'/'+id,body).subscribe(e=>{
+          console.log(e);
+          
+        })
+      }
 }

@@ -1,1 +1,44 @@
-<p>client works!</p>
+<app-admin></app-admin>
+
+<table class="table align-middle mb-0  table-hover table-active table-responsive table-bordered" >
+  <thead class="bg-dark">
+
+  <tr class="text-warning">
+    <th>Prenom</th>
+    <th>Nom</th>
+    <th>Telephone</th>
+    <th>Email</th>
+    <th>Adresse</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+
+  <tbody *ngFor="let clien of clients">
+  <tr>
+    <td>
+      <div class="d-flex align-items-center">
+        <div class="ms-3">
+          <p class="fw-bold mb-1">{{clien.prenom}}</p>
+        </div>
+      </div>
+    </td>
+    <td>
+      <div class="d-flex align-items-center">
+        <div class="ms-3">
+          <p class="fw-bold mb-1">{{clien.nom}}</p>
+        </div>
+      </div>
+    </td>
+    <td>
+      <p class="fw-normal mb-1">{{clien.telephone}}</p>
+    </td>
+    <td class="d-flex justify-content-lg-evenly">{{clien.email}}</td>
+    <td class="">{{clien.adresse}}</td>
+
+    <td class="d-flex justify-content-evenly " >
+      <button  type="button" class=" btn btn-primary  d-flex justify-content-center " [routerLink]="['/ligne-commande/',clien['id']]">detail</button>
+
+    </td>
+  </tr>
+  </tbody>
+</table>
